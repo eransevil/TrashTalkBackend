@@ -2,11 +2,16 @@ const express = require("express");
 const cors = require("cors");
 const expressSession = require('express-session')
 const path = require('path')
+const bodyParser = require('body-parser')
+
 const logger = require('./services/loggerService')
 
 const app = express();
 require("dotenv").config({ path: "./config.env" });
 
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 const session = expressSession({
   secret: 'ssl',
@@ -21,6 +26,9 @@ const session = expressSession({
 app.use(express.json())
 app.use(session)
 
+app.use(express.urlencoded({ extended: true}));
+
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.resolve(__dirname, 'public')))
 } else {
@@ -32,8 +40,10 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const userRoutes = require('./api/user/userRoutes')
+const authRoutes = require('./api/auth/authRoutes')
 
 app.use('/api/user', userRoutes)
+app.use('/api/auth', authRoutes)
 
 
 // Make every server-side-route to match the index.html
@@ -50,18 +60,3 @@ app.listen(port, () => {
     logger.info('Server is running on port: ' + port)
 })
 
-
-// const port = process.env.PORT || 3001;
-// app.use(cors());
-// app.use(express.json());
-// app.use(require("./api/user/usersRoutes"));
-// // get driver connection
-// const dbo = require("./db/conn");
-
-// app.listen(port, async () => {
-//   // perform a database connection when server starts
-//   await dbo.connectToServer(function (err) {
-//     if (err) console.error(err);
-//   });
-//   console.log(`Server is running on port: ${port}`);
-// });

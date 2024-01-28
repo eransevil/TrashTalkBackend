@@ -16,9 +16,7 @@ module.exports = {
 async function query() {
     try { 
         const collection = await dbService.getCollection('users')
-        console.log('collection', collection);
         var users = await collection.find({}).toArray()
-        console.log('users', users);
         users = users.map(user => {
             delete user.password
             user.createdAt = new ObjectId(user._id).getTimestamp()
@@ -92,10 +90,6 @@ async function add(user) {
             password: user.password,
             fullname: user.fullname,
             imgUrl: user.imgUrl ||' https://img.17qq.com/images/hrwssasuuax.jpeg',
-            notifications: {
-                orders:[],
-                msgs:[]
-            }
         }
         const collection = await dbService.getCollection('users')
         await collection.insertOne(userToAdd)
