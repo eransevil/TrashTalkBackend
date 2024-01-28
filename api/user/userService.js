@@ -1,6 +1,5 @@
 
 const dbService = require('../../services/dbService')
-// const logger = require('../../services/logger.service')
 const ObjectId = require('mongodb').ObjectId
 const logger = require('../../services/loggerService')
 

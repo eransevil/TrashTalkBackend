@@ -28,3 +28,17 @@
 1/28/2024, 1:41:24 PM - ERROR - while finding user 65b6343f5d28a4522e0ac983 | TypeError: Class constructor ObjectId cannot be invoked without 'new'
 1/28/2024, 1:41:24 PM - ERROR - Failed to get user | TypeError: Class constructor ObjectId cannot be invoked without 'new'
 1/28/2024, 1:41:26 PM - INFO - Server is running on port: 3001
+1/28/2024, 3:29:45 PM - INFO - Server is running on port: 3001
+1/28/2024, 3:29:54 PM - ERROR - while finding user 65b6343f5d28a4522e0ac983S | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+1/28/2024, 3:29:54 PM - ERROR - Failed to get user | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+1/28/2024, 3:30:10 PM - ERROR - while finding user 65b6343f5d28a4522e0ac983S | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+1/28/2024, 3:30:10 PM - ERROR - Failed to get user | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+1/28/2024, 3:30:18 PM - INFO - Server is running on port: 3001
+1/28/2024, 3:30:21 PM - ERROR - while finding user 65b6343f5d28a4522e0ac983S | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+1/28/2024, 3:30:21 PM - ERROR - Failed to get user | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+1/28/2024, 3:30:22 PM - ERROR - while finding user 65b6343f5d28a4522e0ac983S | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+1/28/2024, 3:30:22 PM - ERROR - Failed to get user | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+1/28/2024, 3:30:39 PM - INFO - Server is running on port: 3001
+1/28/2024, 3:32:29 PM - INFO - Server is running on port: 3001
+1/28/2024, 3:33:46 PM - INFO - Server is running on port: 3001
+1/28/2024, 3:36:31 PM - INFO - Server is running on port: 3001
