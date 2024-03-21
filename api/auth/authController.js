@@ -12,16 +12,23 @@ async function login(req, res) {
     res.status(401).send({ err: "Invalid username or password" });
   }
 }
+async function loginWithGoogle(req, res) {
+  const { idToken } = req.body;
+
+  try {
+    const user = await authService.loginWithGoogle(idToken);
+    req.session.user = user;
+    res.json(user);
+  } catch (err) {
+    logger.error("Failed to Login " + err);
+    res.status(403).send({ err: "Login user already regsiter with email" });
+  }
+}
 
 async function signup(req, res) {
   try {
-    const { username, password, fullname, imgUrl } = req.body;
-    const account = await authService.signup(
-      username,
-      password,
-      fullname,
-      imgUrl
-    );
+    const { username, password, email, imgUrl } = req.body;
+    const account = await authService.signup(username, password, email, imgUrl);
     logger.debug(
       `auth.route - new account created: ` + JSON.stringify(account)
     );
@@ -47,4 +54,5 @@ module.exports = {
   login,
   signup,
   logout,
+  loginWithGoogle,
 };

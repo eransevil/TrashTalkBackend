@@ -9,6 +9,7 @@ module.exports = {
   remove,
   update,
   add,
+  getByEmail,
 };
 
 async function query() {
@@ -51,6 +52,13 @@ async function getByUsername(username) {
     throw err;
   }
 }
+async function getByEmail(email) {
+  let emailInLowerCase = email.toLowerCase();
+  const collection = await dbService.getCollection("users");
+  const user = await collection.findOne({ email: emailInLowerCase });
+  if (!user) return false;
+  return user;
+}
 
 async function remove(userId) {
   try {
@@ -68,7 +76,7 @@ async function update(user) {
     const userToSave = {
       _id: new ObjectId(req.body._id),
       username: req.body.username.toLowerCase(),
-      fullname: req.body.fullname,
+      email: req.body.email,
       password: req.body.password,
       isAdmin: req.body.isAdmin,
     };
@@ -87,7 +95,7 @@ async function add(user) {
     const userToAdd = {
       username: user.username.toLowerCase(),
       password: user.password,
-      fullname: user.fullname,
+      email: user.email,
       imgUrl: user.imgUrl || " https://img.17qq.com/images/hrwssasuuax.jpeg",
     };
     const collection = await dbService.getCollection("users");
@@ -108,7 +116,7 @@ function _buildCriteria(filterBy) {
         username: txtCriteria,
       },
       {
-        fullname: txtCriteria,
+        email: txtCriteria,
       },
     ];
   }
