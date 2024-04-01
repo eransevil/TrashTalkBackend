@@ -21,15 +21,16 @@ async function loginWithGoogle(idToken) {
     withCredentials: true,
   });
   const user = await userService.getByEmail(response?.data.email.toLowerCase());
-  console.log("user", user);
+  const email = response?.data.email;
+  const name = response?.data.name;
+  const userForReturn = { email, name };
   if (!user) {
-    const email = response?.data.email;
-    const name = response?.data.name;
-    const userForReturn = { email, name };
-    return userForReturn;
-  } else {
+    await userService.add({
+      username: response?.data.email,
+      email: response?.data.email,
+    });
   }
-  return Promise.reject("user already regsiter with email");
+  return userForReturn;
 }
 
 async function signup(username, password, email, imgUrl) {
